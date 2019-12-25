@@ -3,10 +3,22 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type BaseTaskPayload {
+  folder: TaskFolder!
+  status: String!
+  errors: [ErrorPayload!]
+}
+
+type ErrorPayload {
+  message: String!
+  type: String!
+}
+
 type Mutation {
   addAccount(newAccountData: NewRecipeInput!): Recipe!
   solve(newSolveData: NewSolveInput!): Recipe!
   getMoney(newAccountData: NewAccountInput!): Recipe!
+  user: UserMutationModule!
 }
 
 input NewAccountInput {
@@ -25,9 +37,59 @@ input NewSolveInput {
 type Query {
   recipe(id: String!): Recipe!
   getAccount: [Recipe!]!
+  user: UserModule!
 }
 
 type Recipe {
   id: String!
   number: String
+}
+
+type Task {
+  id: String!
+  description: String
+  title: String
+}
+
+type TaskFolder {
+  list: [Task!]!
+}
+
+input TaskInput {
+  description: String!
+  title: String
+}
+
+type TaskMutation {
+  create(TaskInput: TaskInput!): Task
+}
+
+type TaskPayload {
+  folder: TaskFolder!
+  status: String!
+  errors: [ErrorPayload!]
+  itemId: String!
+  item: Task!
+}
+
+type User {
+  id: String!
+  name: String!
+  password: String!
+  email: String!
+}
+
+input UserInput {
+  name: String!
+  password: String!
+  email: String!
+}
+
+type UserModule {
+  list: [User!]
+}
+
+type UserMutationModule {
+  task: TaskMutation
+  create(UserInput: UserInput!): User
 }

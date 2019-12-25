@@ -7,6 +7,7 @@ export class NewRecipeInput {
   number!: string;
 }
 
+// tslint:disable-next-line: max-classes-per-file
 @InputType()
 export class NewAccountInput {
   @Field(type => String)
