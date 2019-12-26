@@ -27,12 +27,27 @@ export class UserResolver {
     return this.userService.getAllUsers();
   }
 
+  @ResolveProperty('task', type => TaskFolder, {
+    nullable: true,
+    name: 'task',
+  })
+  async gettask(): Promise<TaskFolder> {
+    return {};
+  }
+
 
   @Mutation(returns => UserMutationModule, { name: 'user' })
   async getUserMutationModule(
   ): Promise<UserMutationModule> {
     return new UserMutationModule();
   }
+
+  @Mutation(returns => TaskMutation, { name: 'task' })
+  async getTaskMutationModule(
+  ): Promise<TaskMutation> {
+    return new TaskMutation();
+  }
+
 }
 
 // tslint:disable-next-line: max-classes-per-file
