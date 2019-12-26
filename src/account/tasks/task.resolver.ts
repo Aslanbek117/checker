@@ -8,6 +8,7 @@ import {
 } from '@nestjs/graphql';
 
 
+
 @Resolver(() => TaskFolder)
 export class TaskResolvers {
   constructor(private readonly taskService: TaskService) { }
@@ -37,5 +38,15 @@ export class TaskMutationResolver {
     const item = this.taskService.save(taskInput);
     return item;
   }
+
+  @ResolveProperty('run', type => Task, { nullable: true, name: 'run' })
+  async compile(
+    @Args('TaskInput') taskInput: TaskInput,
+  ): Promise<Task> {
+    const result = this.taskService.solve(taskInput);
+    return {} as any;
+
+  }
+
 
 }

@@ -63,6 +63,7 @@ input TaskInput {
 
 type TaskMutation {
   create(TaskInput: TaskInput!): Task
+  run(TaskInput: TaskInput!): Task
 }
 
 type TaskPayload {
