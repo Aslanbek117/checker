@@ -33,13 +33,26 @@ export class Task {
   @Field()
   id!: string;
 
-  @Column({ length: 500, nullable: true })
-  @Field({ nullable: true })
-  description?: string;
+  @Column()
+  @Field()
+  code!: string;
 
-  @Column({ length: 500, nullable: true })
+  @Column({ nullable: true })
   @Field({ nullable: true })
-  title?: string;
+  stdOut?: string;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  stdErr?: string;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  cpuUsage?: string;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  memoryUsage?: string;
+
 
   // tslint:disable-next-line: no-consecutive-blank-lines
 
@@ -49,10 +62,7 @@ export class Task {
 @InputType()
 export class TaskInput {
   @Field()
-  description!: string;
-
-  @Field({ nullable: true })
-  title?: string;
+  code!: string;
 }
 
 

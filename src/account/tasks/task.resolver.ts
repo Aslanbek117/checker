@@ -43,8 +43,8 @@ export class TaskMutationResolver {
   async compile(
     @Args('TaskInput') taskInput: TaskInput,
   ): Promise<Task> {
-    const result = this.taskService.solve(taskInput);
-    return {} as any;
+    const result = await this.taskService.solve(taskInput);
+    return result;
 
   }
 

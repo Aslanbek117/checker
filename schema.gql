@@ -48,8 +48,11 @@ type Recipe {
 
 type Task {
   id: String!
-  description: String
-  title: String
+  code: String!
+  stdOut: String
+  stdErr: String
+  cpuUsage: String
+  memoryUsage: String
 }
 
 type TaskFolder {
@@ -57,8 +60,7 @@ type TaskFolder {
 }
 
 input TaskInput {
-  description: String!
-  title: String
+  code: String!
 }
 
 type TaskMutation {

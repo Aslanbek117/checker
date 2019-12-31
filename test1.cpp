@@ -1,8 +1,9 @@
 #include <iostream>
+
 using namespace std;
 
-int main() {
+int main()n {
 
-    cout<<"hello, world";
-    return 0;
+cout<<"satbek pidor";
+return 0
 }
