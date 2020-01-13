@@ -2,8 +2,11 @@
 
 using namespace std;
 
-int main()n {
+int main() {
+int a;
+int b;
+cin>>a>>b;
 
-cout<<"satbek pidor";
-return 0
+cout << a + b;
+return 0;
 }

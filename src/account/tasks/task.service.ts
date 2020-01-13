@@ -39,39 +39,28 @@ export class TaskService {
         console.log('Saved!');
       });
 
-    const compile_result = {
-      stdout: '',
-      stderr: '',
-      memoryUsage: '',
-      cpuUsage: '',
-    }
 
-    let resultPromise = cpp.runFile('/home/aslanbek/sav/nest/sample/23-type-graphql/test1.cpp');
-    resultPromise
-      .then(async result => {
-        console.log(result);
-        compile_result.stdout = result.stdout;
-        compile_result.stderr = result.stderr;
-        compile_result.memoryUsage = result.memoryUsage;
-        compile_result.cpuUsage = result.cpuUsage;
-
-
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    // return {} as any;
-    console.log("compile result", compile_result);
+    const compile_result = await this.compile_run(data);
 
     const createdTask = await this.taskRepository.create({
       ...data,
-      stdErr: compile_result.stderr,
+      stdErr: 'a',
       stdOut: compile_result.stdout,
       memoryUsage: compile_result.memoryUsage,
       cpuUsage: compile_result.cpuUsage,
     });
     const save = this.taskRepository.save(createdTask);
     return save;
+
+  }
+
+  async compile_run(code: TaskInput): Promise<any> {
+
+    const result: Promise<any> = cpp.runFile('/home/aslanbek/aslan-home/back/checker/test1.cpp', { stdin: '3 2' });
+    const ss = await result;
+    console.log("ss", ss);
+
+    return result;
 
   }
 

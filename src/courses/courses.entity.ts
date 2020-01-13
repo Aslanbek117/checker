@@ -4,7 +4,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, BaseEntity, OneToMan
 
 @Entity()
 @ObjectType()
-export class User {
+export class Course {
     @PrimaryGeneratedColumn('uuid')
     @Field()
     id!: string;
@@ -15,40 +15,34 @@ export class User {
 
     @Column()
     @Field()
-    password!: string;
+    description!: string;
 
     @Column()
     @Field()
-    email!: string;
-
-    @Column({ nullable: true })
-    @Field({ nullable: true })
-    isAdmin!: boolean;
+    image!: string;
 
 }
 
 @InputType()
-export class UserInput {
+export class CourseInput {
 
     @Field()
     name!: string;
 
     @Field()
-    password!: string;
+    description!: string;
 
     @Field()
-    email!: string;
+    image!: string;
 
-    @Field()
-    isAdmin!: boolean;
 }
 
 
 
 @ObjectType()
-export class UserModule { }
+export class CourseModule { }
 
 @ObjectType()
-export class UserMutationModule { }
+export class CourseMutationModule { }
 
 

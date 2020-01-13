@@ -18,7 +18,7 @@ async function bootstrap() {
       }
     },
   });
-  // app.startAllMicroservicesAsync();
+  app.startAllMicroservicesAsync();
 
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(3005);

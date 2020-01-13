@@ -9,6 +9,28 @@ type BaseTaskPayload {
   errors: [ErrorPayload!]
 }
 
+type Course {
+  id: String!
+  name: String!
+  description: String!
+  image: String!
+}
+
+input CourseInput {
+  name: String!
+  description: String!
+  image: String!
+}
+
+type CourseModule {
+  list: [Course!]
+  byName(name: String!): Course
+}
+
+type CourseMutationModule {
+  create(CourseInput: CourseInput!): Course
+}
+
 type ErrorPayload {
   message: String!
   type: String!
@@ -20,6 +42,7 @@ type Mutation {
   getMoney(newAccountData: NewAccountInput!): Recipe!
   user: UserMutationModule!
   task: TaskMutation!
+  course: CourseMutationModule!
 }
 
 input NewAccountInput {
@@ -39,6 +62,7 @@ type Query {
   recipe(id: String!): Recipe!
   getAccount: [Recipe!]!
   user: UserModule!
+  course: CourseModule!
 }
 
 type Recipe {
@@ -81,12 +105,14 @@ type User {
   name: String!
   password: String!
   email: String!
+  isAdmin: Boolean
 }
 
 input UserInput {
   name: String!
   password: String!
   email: String!
+  isAdmin: Boolean!
 }
 
 type UserModule {

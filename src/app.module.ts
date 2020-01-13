@@ -4,6 +4,7 @@ import { RecipesModule } from './recipes/recipes.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './account/user.entity';
 import { UsersModule } from './account/user.module';
+import { CoursesModule } from './courses/course.module';
 
 
 @Module({
@@ -27,6 +28,7 @@ import { UsersModule } from './account/user.module';
     }),
     RecipesModule,
     UsersModule,
+    CoursesModule,
     GraphQLModule.forRoot({
       installSubscriptionHandlers: true,
       autoSchemaFile: 'schema.gql',
